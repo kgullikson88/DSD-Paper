@@ -59,21 +59,31 @@ In this paper, we describe the direct spectroscopic detection method in detail, 
 
 All implementations of the direct spectroscopic method use high spectral resolution and high signal-to-noise spectra, and search for companions with extreme flux ratios by cross-correlating the observed spectra with models for the expected companion. The main differences between the various implementations are the primary star and telluric line removal processes. The `Hot Jupiter' searches \citep[e.g.][]{Snellen2010} use known orbital phase information and a high degree of phase coverage to simultaneously estimate an empirical stellar and telluric spectrum with minimal contamination from the planet, while \cite{Kolbl2015} subtract a best-fit model spectrum for the primary star. Since \cite{Kolbl2015} use optical data, they do not attempt any telluric correction. Note that the approach of \cite{Kolbl2015} is conceptually similar to the todcor code \citep{Mazeh1994}, which is widely used to search for double-lined spectroscopic binary systems.
 
-Here, we focus on detecting companions to rapidly rotating early-type stars, for which it is very difficult to detect the reflex motion of the primary star induced by a low-mass companion. We fit and remove the telluric absorption using the TelFit code \citep{Gullikson2014}, and estimate an empirical primary star spectrum with a Gaussian smoothing filter applied to the telluric-corrected data. We use a  window size ($w$) set by
+Unlike most previous work, we focus on not only detecting but accurately characterizing the companion. We additionally optimize our technique for detecting cool companions to rapidly rotating early-type stars, for which it is very difficult to detect the reflex motion of the primary star. We fit and remove the telluric absorption using the TelFit code \citep{Gullikson2014}, and estimate an empirical primary star spectrum with a Gaussian smoothing filter applied to the telluric-corrected data. We chose to use a smoothing filter over subtracting model spectra for two reasons: the model spectra are a poor representation of the data, especially at the high signal-to-noise ratios that we use, and the smoothing filter removes any large-scale instrumental systematics that remain in the spectrum. The smoothing filter has a  window size ($w$) set by
 
 \begin{equation}
 w = \frac{v\sin{i} \cdot f}{c} \cdot \frac{\lambda_0}{\Delta \lambda}
+\label{eqn:smoothing}
 \end{equation}
-where $v\sin{i}$ is the literature rotational velocity of the star, $\lambda_0$ is the central wavelength of the echelle order, $\Delta \lambda$ is the wavelength spacing per pixel of the order, and $f = 0.25$ is an empirically determined parameter to give a visually adequate fit. Typical window sizes ranged from 50 - 100 pixels. 
+where $v\sin{i}$ is the literature rotational velocity of the star, $\lambda_0$ is the central wavelength of the echelle order, $\Delta \lambda$ is the wavelength spacing per pixel of the order, $c$ is the speed of light, and $f = 0.25$ is an empirically determined parameter to give a visually adequate fit. Typical window sizes ranged from 50 - 100 pixels.
 
-We use the Phoenix library of model spectra prepared by \cite{Husser2013_b} throughout this work, and cross-correlate every echelle order that doesn't have strong telluric residuals against a grid of model spectra spanning the  parameters
+We use the following subset of the Phoenix library of model spectra prepared by \cite{Husser2013_b} throughout this work:
 
 \begin{itemize}
 \item $\rm T_{eff} = 3000-7000$ K\footnote{We extend the grid to higher temperatures if the measured temperature (see Section \ref{subsec:systematics}) is near 7000 K}, in steps of 100 K
 \item {[}Fe/H{]} = -0.5, 0.0, +0.5
 \item $v\sin{i} = 1, 5, 10, 20, 30 \ \rm km \ s^{-1}$
 \end{itemize}
-Here, the $v\sin{i}$ is the rotational velocity of the secondary star. Estimating the primary star spectrum with a gaussian filter gives a much more accurate representation of the primary than a rotationally broadened model spectrum, but can distort the companion spectrum as well. We account for the small influence that the smoothing kernel has on the companion spectrum by convolving it with the same smoothing kernel used for the data, and subtracting the convolved model from the original. Treating the model spectrum in this way is more commonly known as unsharp masking. We rotationally broaden the model spectra and reduce the resolution and pixel sampling to that of the instrument \emph{before} the unsharp masking process. Finally, we combine the CCF s for all orders of a given observations using a simple average.
+Here, the $v\sin{i}$ is the rotational velocity of the secondary star. We account for the small influence that the smoothing kernel has on the companion spectrum by convolving the model with the same smoothing kernel used for the data, and subtracting the convolved model from the original. Treating the model spectrum in this way is more commonly known as unsharp masking. Finally, we cross-correlate every echelle order that does not have strong telluric residuals against the corresponding model spectrum, and combine the CCFs for each order using a simple average. The method is summarized below:
+
+\begin{enumerate}
+ \item Smooth the observed spectrum with a Gaussian smoothing kernel with width given by Equation \ref{eqn:smoothing}, and subtract the smoothed spectrum from the original
+ \item Rotationally broaden the Phoenix model spectrum to the requested companion $v\sin{i}$
+ \item Smooth the broadened spectrum to the instrumental resolution by convolving it with a gaussian kernel of appropriate width.
+ \item Unsharp mask the broadened model spectrum
+ \item Resample the processed model spectrum to the same wavelength spacing per pixel as the observed spectrum.
+ \item Cross-correlate each echelle order against the corresponding processed model spectrum, and combine using a simple average.
+\end{enumerate}
 
 
 
