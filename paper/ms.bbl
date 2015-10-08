@@ -1,4 +1,4 @@
-\begin{thebibliography}{87}
+\begin{thebibliography}{88}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname href\endcsname\relax
   \def\href#1#2{}\fi
@@ -107,6 +107,11 @@
 {Casagrande}, L., {Sch{\"o}nrich}, R., {Asplund}, M., {Cassisi}, S.,
   {Ram{\'{\i}}rez}, I., {Mel{\'e}ndez}, J., {Bensby}, T., \& {Feltzing}, S.
   2011, \aap, 530, A138
+
+
+\bibitem[{{Castelli} \& {Kurucz}(2003)}]{Castelli2003}
+{Castelli}, F. \& {Kurucz}, R.~L. IAU Symposium, Vol. 210, , Modelling of
+  Stellar Atmospheres, ed. N.~{Piskunov}W.~W. {Weiss} \& D.~F. {Gray}, 20P
 
 
 \bibitem[{{Crepp} {et~al.}(2010){Crepp}, {Serabyn}, {Carson}, {Ge}, \&
