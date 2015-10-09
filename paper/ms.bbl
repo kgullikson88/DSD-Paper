@@ -1,4 +1,4 @@
-\begin{thebibliography}{88}
+\begin{thebibliography}{89}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname href\endcsname\relax
   \def\href#1#2{}\fi
@@ -459,6 +459,12 @@ Lee, J.-J. 2015, plp: Version 2.0
 \bibitem[{{Tokovinin} {et~al.}(2010){Tokovinin}, {Mason}, \&
   {Hartkopf}}]{Tokovinin2010}
 {Tokovinin}, A., {Mason}, B.~D., \& {Hartkopf}, W.~I. 2010, \aj, 139, 743
+
+
+\bibitem[{{Tokovinin} {et~al.}(2015){Tokovinin}, {Mason}, {Hartkopf}, {Mendez},
+  \& {Horch}}]{Tokovinin2015}
+{Tokovinin}, A., {Mason}, B.~D., {Hartkopf}, W.~I., {Mendez}, R.~A., \&
+  {Horch}, E.~P. 2015, \aj, 150, 50
 
 
 \bibitem[{{Tomkin} \& {Popper}(1986)}]{Tomkin1986}
