@@ -1,0 +1,8 @@
+HIP,measured_T,measured_T_lowerr,measured_T_uperr,known_T,known_T_lowerr,known_T_uperr,method,Notes,
+#14576,7552,104,104,7550,250,250,Spectroscopic,Expected temperature from Kolbas at al 2015 (direct temperature estimate). Cooler component is 4900 +/- 300 K with vsini = 62 km/s… too high!,
+76267,5450,158,158,5670,281,193,Spectroscopic,"Expected temperature: primary mass from DH2015 estimate, and uses K1/K2 from SB9 (Tomkin & Popper 1986) to get M2. Then convert to temperature"
+77516,6820,141,141,6600,167,530,Imaging,Expected temperature from a joint constraint in delta-magnitude as well as total mass from the orbit.,
+79199,4620,158,158,4795,484,484,Imaging,Expected temperature from J-H quoted in Shatsky & Tokovinin (2002),
+84606,5480,154,154,5450,45,71,Imaging,"Expected temperature from V_T band magnitude difference and the primary temperature from DH2015. The B_T band disagrees, and B_T-V_T disagrees with both…"
+22958,6070,112,112,6240,409,579,Imaging,Expected temperature from Hipparchos magnitude difference but using Teff and Luminosity determinations from Zorec & Royer (2012). (Primary does not follow MS relations),
+24902,5680,154,154,5948,84,34,Imaging,Expected temperature from magnitude difference in Hipparchos catalog,
